@@ -3,7 +3,7 @@
     <div @click="showDetails = !showDetails" class="actions">
       <h3>{{ project.title }}</h3>
       <div class="icons">
-        <span class="material-symbols-outlined">delete</span>
+        <span @click="deleteProject" class="material-symbols-outlined">delete</span>
         <span class="material-symbols-outlined">edit</span>
         <span class="material-symbols-outlined">check</span>
       </div>
@@ -21,7 +21,15 @@ export default {
   ],
   data() {
     return {
-      showDetails: false
+      showDetails: false,
+      uri: "http://localhost:3000/projects/" + this.project.id
+    }
+  },
+  methods: {
+    deleteProject() {
+      fetch(this.uri, {method: 'DELETE'})
+          .then(() => this.$emit('delete', this.project.id))
+          .catch(err => console.log(err.message))
     }
   }
 }
