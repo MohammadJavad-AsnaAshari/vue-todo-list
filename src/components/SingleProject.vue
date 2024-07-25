@@ -1,11 +1,11 @@
 <template>
   <div class="project" :class="{ complete: project.complete }">
     <div class="actions">
-      <h3 @click="showDetails = !showDetails">{{ project.title }}</h3>
+      <h3 class="no-select" @click="showDetails = !showDetails">{{ project.title }}</h3>
       <div class="icons">
-        <span @click="deleteProject" class="material-symbols-outlined">delete</span>
-        <span class="material-symbols-outlined">edit</span>
-        <span @click="changeComplete" class="material-symbols-outlined">check</span>
+        <span @click="deleteProject" class="material-symbols-outlined no-select">delete</span>
+        <span class="material-symbols-outlined no-select">edit</span>
+        <span @click="changeComplete" class="material-symbols-outlined no-select">check</span>
       </div>
     </div>
     <div v-if="showDetails" class="details">
@@ -78,6 +78,12 @@ h3 {
 
 .project.complete {
   border-left: 4px solid #00ce89;
+}
+
+.no-select {
+  user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ */
 }
 
 </style>
