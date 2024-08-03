@@ -4,7 +4,9 @@
       <h3 class="no-select" @click="showDetails = !showDetails">{{ project.title }}</h3>
       <div class="icons">
         <span @click="deleteProject" class="material-symbols-outlined no-select">delete</span>
-        <span class="material-symbols-outlined no-select">edit</span>
+        <router-link :to="{name: 'EditProject', params: {id: project.id}}">
+          <span class="material-symbols-outlined no-select">edit</span>
+        </router-link>
         <span @click="changeComplete" class="material-symbols-outlined no-select">check</span>
       </div>
     </div>
